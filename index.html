@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+<div>
+    <button class="rodyk">Meniu</button>
+    <aside>
+
+
+    </aside>
+</div>
+<script>
+    let manoAjax = new XMLHttpRequest(); //sukuriamas naujas objektas
+    manoAjax.onreadystatechange = function () { //callback
+        if(manoAjax.readyState === 4){
+            if (manoAjax.status === 200){
+                document.querySelector('aside').innerHTML = manoAjax.responseText;
+            } else {
+                alert(manoAjax.statusText);
+            }
+
+        }
+    };
+
+    manoAjax.open('GET', 'meniu.html'); //uzklausa
+
+    document.querySelector('button.rodyk').onclick = function () {
+        manoAjax.send(); //uzklausos paleidimas
+        document.querySelector('button.rodyk').style.display="none";
+    }
+
+
+</script>
+</body>
+</html>
